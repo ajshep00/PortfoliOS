@@ -12,7 +12,7 @@ const CreditsApp: React.FC = () => {
             <button>
               <RiArrowDropDownLine />
             </button>
-            <a href='https://dangelostudio.art' className='text-rose'>D'Angelo Studio</a></li>
+            <a href='https://dangelostudio.art' className='text-rose'>D&apos;Angelo Studio</a></li>
         </ul>
       </div>
       <div>
@@ -27,7 +27,7 @@ const CreditsApp: React.FC = () => {
         <h2>Inspiration</h2>
         <div className='h-[1.5px] bg-white mb-2'></div>
         <ul>
-          <li><a href='https://vivek9patel.github.io/' className='text-rose'>Vivek Patel's Portfolio</a></li>
+          <li><a href='https://vivek9patel.github.io/' className='text-rose'>Vivek Patel&apos;s Portfolio</a></li>
         </ul>
       </div>
 
