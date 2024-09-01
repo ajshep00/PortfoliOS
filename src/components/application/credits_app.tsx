@@ -9,10 +9,10 @@ const CreditsApp: React.FC = () => {
         <div className='h-[1.5px] bg-white mb-2'></div>
         <ul>
           <li>
-            <button>
+            {/* <button>
               <RiArrowDropDownLine />
-            </button>
-            <a href='https://dangelostudio.art' className='text-rose'>D&apos;Angelo Studio</a></li>
+            </button> */}
+            <a href='https://dangelostudio.weebly.com/' className='text-rose'>D&apos;Angelo Studio</a></li>
         </ul>
       </div>
       <div>
