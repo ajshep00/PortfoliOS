@@ -1,4 +1,3 @@
-// public/files/favicon.js
 console.log('Favicon script loaded');
 
 let frameIndex = 0;
@@ -25,10 +24,19 @@ const favicon_frames = [
   '/files/artwork/favicon_frames/frame_19.png'
 ];
 
+const favicon = document.getElementById('dynamic-favicon'); // Cast to HTMLLinkElement
+    if (favicon) {
+      console.log('Favicon element found:', favicon);
+    //   favicon.href = '/files/artwork/favicon_frames/frame_03.png'; // Test with a known frame
+    } else {
+      console.log('Favicon element not found.');
+    }
+
+
 function updateFavicon() {
-  const favicon = document.getElementById('dynamic-favicon') as HTMLLinkElement;
+  const favicon = document.getElementById('dynamic-favicon');
   if (favicon) {
-    frameIndex = (frameIndex + 1);
+    frameIndex = (frameIndex + 1) % favicon_frames.length;
     favicon.href = favicon_frames[frameIndex];
     console.log('Favicon updated:', favicon_frames[frameIndex]);
   } else {
@@ -36,8 +44,7 @@ function updateFavicon() {
   }
 }
 
-// Ensure the DOM is fully loaded before running the script
-window.onload = () => {
+
   console.log('Window loaded');
-  setInterval(updateFavicon, 100); // Adjust interval as needed
-};
+  setInterval(updateFavicon, 220); // Adjust interval as needed
+

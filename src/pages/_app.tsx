@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta charSet="utf-8" />
         <meta name="title" content="Alex Shepherd - Desktop Portfolio" />
         <link id="dynamic-favicon" rel="icon" href="/files/artwork/favicon_frames/frame_00.png" />
-        <Script src="/files/favicon.tsx" />
       </Head>
+      <Script src="/files/favicon.js" />
       <Component {...pageProps} />
     </>
   );
