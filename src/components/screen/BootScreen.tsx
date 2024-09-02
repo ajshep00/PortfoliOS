@@ -23,11 +23,11 @@ const BootScreen: React.FC<BootScreenProps> = ({ onLoaded }) => {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 flex items-center justify-center bg-white transition-opacity duration-300 ease-in-out ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       // style={{ backgroundColor: bgColor }} // Semi-transparent background color
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image
+      <div className="absolute inset-0 z-0 bg-white bg-paper-texture-lg bg-cover">
         <Image
           src="/files/artwork/wallpaper/paper_wallpaper.jpg"
           alt="Background of crumpled paper wallpaper"
@@ -35,9 +35,8 @@ const BootScreen: React.FC<BootScreenProps> = ({ onLoaded }) => {
           priority={true}
         //   style={{ objectFit: 'cover' }} // Ensures image covers the background properly
         />
-      </div>
+      </div> */}
       <div className='relative z-10 flex flex-col items-center justify-around w-full h-full'>
-        {/* <h1 className='text-6xl font-semibold font-sans text-black'>PortfoliOS</h1> */}
         <Logo />
         <LoadingBar />
       </div>
