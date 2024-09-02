@@ -1,15 +1,16 @@
 // components/DesktopLayout.tsx
+
 import React, { useState, useEffect } from 'react';
 import Taskbar from './Taskbar';
 import Window from './Window';
+import Folder from './Folder'; // Import Folder component
 import windowConfig from '../extras/windowConfig';
 
 const DesktopLayout: React.FC = () => {
   const [openWindows, setOpenWindows] = useState<{ [key: string]: { zIndex: number, minimized: boolean } }>({});
   const [nextZIndex, setNextZIndex] = useState<number>(1);
-  const [initialized, setInitialized] = useState<boolean>(false); // State to track initialization
+  const [initialized, setInitialized] = useState<boolean>(false);
 
-  // Effect to initialize default open windows
   useEffect(() => {
     if (!initialized) {
       const initialOpenWindows = Object.entries(windowConfig).reduce((acc, [name, config]) => {
@@ -21,13 +22,12 @@ const DesktopLayout: React.FC = () => {
       }, {} as { [key: string]: { zIndex: number, minimized: boolean } });
 
       setOpenWindows(initialOpenWindows);
-      setInitialized(true); // Mark initialization as complete
+      setInitialized(true);
     }
   }, [initialized, nextZIndex]);
 
   const openWindow = (windowName: string) => {
     if (!openWindows[windowName]) {
-      // Open a new window
       setOpenWindows(prev => ({
         ...prev,
         [windowName]: {
@@ -37,13 +37,12 @@ const DesktopLayout: React.FC = () => {
       }));
       setNextZIndex(prev => prev + 1);
     } else if (openWindows[windowName]?.minimized) {
-      // Restore a minimized window
       setOpenWindows(prev => ({
         ...prev,
         [windowName]: {
           ...prev[windowName],
           minimized: false,
-          zIndex: nextZIndex // Bring to front
+          zIndex: nextZIndex
         }
       }));
       setNextZIndex(prev => prev + 1);
@@ -79,7 +78,19 @@ const DesktopLayout: React.FC = () => {
   };
 
   const renderWindowContent = (windowName: string) => {
-    const Component = windowConfig[windowName]?.component;
+    const config = windowConfig[windowName];
+    const Component = config?.component;
+
+    if (config?.isFolder) {
+      return (
+        <Component
+          apps={Object.keys(config.folderApps || {})}
+          onOpenWindow={openWindow}
+          folderName={windowName} // Pass folderName to Folder component
+        />
+      );
+    }
+
     return Component ? <Component /> : <p>Content for {windowName}</p>;
   };
 
@@ -89,7 +100,7 @@ const DesktopLayout: React.FC = () => {
         {Object.entries(openWindows).map(([name, { zIndex, minimized }]) => (
           <Window
             key={name}
-            title={name}
+            title={windowConfig[name]?.title || name}
             onClose={() => closeWindow(name)}
             onMinimize={() => minimizeWindow(name)}
             zIndex={zIndex}
@@ -102,9 +113,9 @@ const DesktopLayout: React.FC = () => {
         <div className='absolute bottom-0 w-full z-50'>
           <Taskbar 
             onOpenWindow={openWindow} 
-            onMinimizeWindow={minimizeWindow} // Pass minimize handler
-            windowNames={Object.keys(windowConfig)} 
-            openWindows={openWindows} // Pass open windows state
+            onMinimizeWindow={minimizeWindow}
+            windowNames={Object.keys(windowConfig)}
+            openWindows={openWindows}
           />
         </div>
       </div>
