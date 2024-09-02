@@ -1,7 +1,6 @@
 // components/Window.tsx
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import Draggable from 'react-draggable';
-import Image from 'next/image'
 
 import { BsDashLg } from "react-icons/bs";
 
@@ -35,22 +34,22 @@ const Window: React.FC<WindowProps> = ({ title, children, onClose, onMinimize, z
       bounds={getBounds()} // Prevent dragging out of the parent bounds
     >
       <div
-        className={`absolute w-[600px] bg-gray-800 bg-paper-texture-lg bg-cover rounded-lg shadow-lg p-4 ${minimized ? 'hidden' : 'block'} `} // Hide the window when minimized
+        className={`absolute w-[600px] bg-gray-800 bg-paper-texture-lg bg-cover rounded-lg shadow-lg ${minimized ? 'hidden' : 'block'} `} // Hide the window when minimized
         style={{ zIndex }}
         onClick={onClick} // Bring to front when clicked
       >
         <header className="bg-gray-700 p-2 rounded-lg flex items-center justify-between cursor-move draggable-header">
           <div className="text-lg font-semibold text-white">{title}</div>
           <div className="flex space-x-2">
-          <button
+            <button
               className="w-3 h-3 bg-yellow-400 rounded-full flex justify-center items-center"
               onClick={(e) => {
                 e.stopPropagation();
                 onMinimize(); // Call the minimize function
               }}
             >
-              <BsDashLg 
-                className='w-3/5 h-3/5 stroke-2'
+              <BsDashLg
+                className='w-4/6 h-4/6 stroke-2'
               />
             </button>
             <button
@@ -60,14 +59,14 @@ const Window: React.FC<WindowProps> = ({ title, children, onClose, onMinimize, z
                 onClose(); // Call the close function
               }}
             >
-              <BsX   
-                className='w-full h-full'
+              <BsX
+                className='w-full h-full stroke-1'
               />
             </button>
           </div>
         </header>
-        <div className='w-full h-full'>
-          <main className="px-2 py-4">{children}</main>
+        <div className='w-full h-full p-4'>
+          <main className="">{children}</main>
         </div>
       </div>
     </Draggable>
