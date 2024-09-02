@@ -3,6 +3,11 @@ import React, { ReactNode, useState } from 'react';
 import Draggable from 'react-draggable';
 import Image from 'next/image'
 
+import { BsDashLg } from "react-icons/bs";
+
+import { BsX } from "react-icons/bs";
+
+
 interface WindowProps {
   children: ReactNode;
   title: string;
@@ -14,9 +19,6 @@ interface WindowProps {
 }
 
 const Window: React.FC<WindowProps> = ({ title, children, onClose, onMinimize, zIndex, onClick, minimized }) => {
-  // const paperTexture = '/files/artwork/textures/paper_texture.png'
-  const minimize_icon = '/files/artwork/icons/minimize_icon.png'
-  const close_icon = '/files/artwork/icons/close_icon.png'
 
   const getBounds = () => ({
     top: 0,
@@ -41,17 +43,14 @@ const Window: React.FC<WindowProps> = ({ title, children, onClose, onMinimize, z
           <div className="text-lg font-semibold text-white">{title}</div>
           <div className="flex space-x-2">
           <button
-              className="w-3 h-3 bg-yellow-400 rounded-full flex items-center justify-center"
+              className="w-3 h-3 bg-yellow-400 rounded-full flex justify-center items-center"
               onClick={(e) => {
                 e.stopPropagation();
                 onMinimize(); // Call the minimize function
               }}
             >
-              <Image 
-                src={minimize_icon}
-                alt="minimize icon"
-                width={9}
-                height={8}
+              <BsDashLg 
+                className='w-3/5 h-3/5 stroke-2'
               />
             </button>
             <button
@@ -61,11 +60,8 @@ const Window: React.FC<WindowProps> = ({ title, children, onClose, onMinimize, z
                 onClose(); // Call the close function
               }}
             >
-              <Image 
-                src={close_icon}
-                alt="close icon"
-                width={7.5}
-                height={7.5}
+              <BsX   
+                className='w-full h-full'
               />
             </button>
           </div>
