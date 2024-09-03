@@ -1,6 +1,7 @@
 // components/Folder.tsx
 import React from 'react';
 import windowConfig from '../extras/windowConfig';
+import Icon from '../extras/Icon';
 
 interface FolderProps {
   apps: string[]; // List of application names to display
@@ -12,26 +13,23 @@ const Folder: React.FC<FolderProps> = ({ apps, onOpenWindow, folderName }) => {
   const folderConfig = windowConfig[folderName];
   const folderApps = folderConfig?.folderApps || {};
 
-  const handleClick = (appName: string) => {
-    onOpenWindow(appName);
-  };
-
   return (
     <div className="bg-gray-800 text-white p-4 rounded-md shadow-lg w-60">
-      <ul>
+      <div className="flex flex-col items-center space-y-2">
         {apps.map((appName) => {
-          const appConfig = folderApps[appName]; // Access the app from folderApps
+          const appConfig = folderApps[appName];
           return (
-            <li
+            <Icon
               key={appName}
-              className="cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => handleClick(appName)}
-            >
-              {appConfig?.title || appName} {/* Use title from folderApps or fallback to appName */}
-            </li>
+              label={appConfig?.title || appName} // Use title from folderApps or fallback to appName
+              onClick={() => onOpenWindow(appName)} // Open specific app when clicked
+              isActive={false} // Update based on actual open state if needed
+              borderColor="border-blue-500" // You can customize this as needed
+              hoverColor="hover:bg-blue-600" // Customize hover color as needed
+            />
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };

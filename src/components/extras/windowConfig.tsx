@@ -18,7 +18,6 @@ interface WindowConfig {
   [key: string]: WindowConfigEntry;
 }
 
-
 const windowConfig: WindowConfig = {
   Welcome: {
     component: WelcomeApp,
@@ -40,7 +39,7 @@ const windowConfig: WindowConfig = {
   },
   Folder: {
     component: Folder,
-    title: 'About Me',
+    title: 'Projects',
     isFolder: true,
     folderApps: {
       TestProject: {
@@ -53,4 +52,3 @@ const windowConfig: WindowConfig = {
 };
 
 export default windowConfig;
-

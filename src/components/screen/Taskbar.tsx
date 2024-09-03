@@ -5,7 +5,7 @@ import windowConfig from '../extras/windowConfig';
 
 interface TaskbarProps {
   onOpenWindow: (windowName: string) => void;
-  onMinimizeWindow: (windowName: string) => void; // New prop to handle minimize action
+  onMinimizeWindow: (windowName: string) => void;
   windowNames: string[];
   openWindows: { [key: string]: { zIndex: number, minimized: boolean } };
 }
@@ -31,13 +31,16 @@ const Taskbar: React.FC<TaskbarProps> = ({ onOpenWindow, onMinimizeWindow, windo
       <div className="flex items-center space-x-4">
         {windowNames.map((windowName) => {
           const { title } = windowConfig[windowName] || {};
+          const isActive = !!openWindows[windowName];
+          const isMinimized = !!openWindows[windowName]?.minimized;
+
           return (
             <Icon
               key={windowName}
-              label={title || windowName} // Use title from windowConfig or fallback to windowName
+              label={title || windowName}
               onClick={() => handleClick(windowName)}
-              isActive={!!openWindows[windowName]} // Determine if the icon is active
-              isMinimized={!!openWindows[windowName]?.minimized} // Pass minimized state
+              isActive={isActive}
+              isMinimized={isMinimized}
             />
           );
         })}
