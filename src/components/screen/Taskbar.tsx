@@ -1,7 +1,7 @@
 // components/Taskbar.tsx
 import React from 'react';
 import Icon from '../extras/Icon';
-import windowConfig from '../extras/windowConfig';
+import allApplications from '../extras/flattenedWindowConfig';
 
 interface TaskbarProps {
   onOpenWindow: (windowName: string) => void;
@@ -30,7 +30,7 @@ const Taskbar: React.FC<TaskbarProps> = ({ onOpenWindow, onMinimizeWindow, windo
     <div className="w-full h-11 bg-gray-800 text-white flex items-center justify-center px-4 py-4">
       <div className="flex items-center space-x-4">
         {windowNames.map((windowName) => {
-          const { title } = windowConfig[windowName] || {};
+          const { title } = allApplications[windowName] || {};
           const isActive = !!openWindows[windowName];
           const isMinimized = !!openWindows[windowName]?.minimized;
 

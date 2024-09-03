@@ -64,8 +64,8 @@ const Window: React.FC<WindowProps> = ({
             </button>
           </div>
         </header>
-        <div className='w-full h-full p-4'>
-          <main>{children}</main>
+        <div>
+          <main className='w-full h-full p-4'>{children}</main>
         </div>
       </div>
     </Draggable>

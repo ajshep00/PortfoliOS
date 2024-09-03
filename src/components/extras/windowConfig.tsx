@@ -5,6 +5,7 @@ import CreditsApp from '../application/credits_app';
 import Folder from '../screen/Folder';
 
 import TestProject from '../application/project_apps/testProject';
+import SecondTestProject from '../application/project_apps/testProject2';
 
 interface WindowConfigEntry {
   component: React.FC<any>; // Allow any props for components
@@ -37,7 +38,7 @@ const windowConfig: WindowConfig = {
     defaultOpen: false,
     isFolder: false
   },
-  Folder: {
+  Projects: {
     component: Folder,
     title: 'Projects',
     isFolder: true,
@@ -45,6 +46,11 @@ const windowConfig: WindowConfig = {
       TestProject: {
         component: TestProject,
         title: 'Test Project',
+        defaultOpen: false,
+      },
+      SecondTestProject: {
+        component: SecondTestProject,
+        title: 'Test Project 2',
         defaultOpen: false,
       }
     },

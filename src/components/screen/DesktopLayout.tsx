@@ -1,6 +1,9 @@
+// components/DesktopLayout.tsx
 import React, { useState, useEffect } from 'react';
 import Taskbar from './Taskbar';
 import Window from './Window';
+import Folder from './Folder';
+import allApplications from '../extras/flattenedWindowConfig';
 import windowConfig from '../extras/windowConfig';
 
 const DesktopLayout: React.FC = () => {
@@ -10,7 +13,7 @@ const DesktopLayout: React.FC = () => {
 
   useEffect(() => {
     if (!initialized) {
-      const initialOpenWindows = Object.entries(windowConfig).reduce((acc, [name, config]) => {
+      const initialOpenWindows = Object.entries(allApplications).reduce((acc, [name, config]) => {
         if (config.defaultOpen && !config.isFolder) { // Open only non-folder windows by default
           acc[name] = { zIndex: nextZIndex, minimized: false };
           setNextZIndex(prev => prev + 1);
@@ -24,9 +27,7 @@ const DesktopLayout: React.FC = () => {
   }, [initialized, nextZIndex]);
 
   const openWindow = (windowName: string) => {
-    // Check if windowName is directly in the main windowConfig
-    const config = windowConfig[windowName];
-  
+    const config = allApplications[windowName];
     if (config) {
       if (config.isFolder) {
         // Handle opening a folder
@@ -62,38 +63,9 @@ const DesktopLayout: React.FC = () => {
         }
       }
     } else {
-      // Search for nested applications inside folders
-      const folderContainingApp = Object.values(windowConfig).find(
-        (entry) => entry.folderApps && entry.folderApps[windowName]
-      );
-  
-      if (folderContainingApp && folderContainingApp.folderApps) {
-        const appConfig = folderContainingApp.folderApps[windowName];
-        if (!openWindows[windowName]) {
-          setOpenWindows(prev => ({
-            ...prev,
-            [windowName]: {
-              zIndex: nextZIndex,
-              minimized: false
-            }
-          }));
-          setNextZIndex(prev => prev + 1);
-        } else if (openWindows[windowName]?.minimized) {
-          setOpenWindows(prev => ({
-            ...prev,
-            [windowName]: {
-              ...prev[windowName],
-              minimized: false,
-              zIndex: nextZIndex
-            }
-          }));
-          setNextZIndex(prev => prev + 1);
-        }
-      }
+      console.error(`Window not found: ${windowName}`);
     }
   };
-  
-  
 
   const closeWindow = (windowName: string) => {
     setOpenWindows(prev => {
@@ -124,35 +96,18 @@ const DesktopLayout: React.FC = () => {
   };
 
   const renderWindowContent = (windowName: string) => {
-    // Check if the windowName is a folder
-    const folderConfig = windowConfig[windowName];
-  
-    if (folderConfig?.isFolder) {
+    const config = allApplications[windowName];
+    if (config?.isFolder) {
       return (
-        <folderConfig.component
-          apps={Object.keys(folderConfig.folderApps || {})}
+        <Folder
+          apps={Object.keys(config.folderApps || {})}
           onOpenWindow={openWindow}
           folderName={windowName}
         />
       );
     }
-  
-    // Check if the windowName is a nested application inside a folder
-    const folderContainingApp = Object.values(windowConfig).find(
-      (entry) => entry.folderApps && entry.folderApps[windowName]
-    );
-  
-    if (folderContainingApp && folderContainingApp.folderApps) {
-      const appConfig = folderContainingApp.folderApps[windowName];
-      return appConfig ? <appConfig.component /> : <p>Content for {windowName}</p>;
-    }
-  
-    // Default case for individual applications
-    const appConfig = windowConfig[windowName];
-    return appConfig?.component ? <appConfig.component /> : <p>Content for {windowName}</p>;
+    return config?.component ? <config.component /> : <p>Content for {windowName}</p>;
   };
-  
-  
   
 
   return (
@@ -161,7 +116,7 @@ const DesktopLayout: React.FC = () => {
         {Object.entries(openWindows).map(([name, { zIndex, minimized }]) => (
           <Window
             key={name}
-            title={windowConfig[name]?.title || name}
+            title={allApplications[name]?.title || name}
             onClose={() => closeWindow(name)}
             onMinimize={() => minimizeWindow(name)}
             zIndex={zIndex}
