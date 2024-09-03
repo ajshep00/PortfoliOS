@@ -3,7 +3,7 @@ import React from 'react';
 // import allApplications from '../extras/flattenedWindowConfig'; // Import the flattened config
 import windowConfig from '../extras/windowConfig';
 import Icon from '../extras/Icon';
-import allApplications from '../extras/flattenedWindowConfig';
+// import allApplications from '../extras/flattenedWindowConfig';
 
 interface FolderProps {
   apps: string[]; // List of application names to display
@@ -14,10 +14,6 @@ interface FolderProps {
 const Folder: React.FC<FolderProps> = ({ apps = [], onOpenWindow, folderName }) => {
   // Validate if the folderName exists and is a folder
   const folderConfig = windowConfig[folderName];
-
-  console.log("FolderConfig:", folderConfig)
-  console.log("Folder Name: ", folderName)
-  console.log("Folder apps[]: ", apps)
 
   if (!folderConfig) {
     console.error(`Folder not found: ${folderName}`);
@@ -39,9 +35,8 @@ const Folder: React.FC<FolderProps> = ({ apps = [], onOpenWindow, folderName }) 
           apps.map((appName) => {
             const appConfig = folderApps[appName];
             return (
-              <div className='w-32 bg-gray-800 rounded-lg'>
+              <div key={appName} className='w-32 bg-gray-800 rounded-lg'>
                 <Icon
-                  key={appName}
                   label={appConfig?.title || appName} // Use title from allApplications or fallback to appName
                   onClick={() => onOpenWindow(appName)} // Open specific app when clicked
                   isActive={false} // Update based on actual open state if needed
