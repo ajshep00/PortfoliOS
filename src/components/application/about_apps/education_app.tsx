@@ -3,19 +3,22 @@
 
     return (
             <div className="flex flex-col space-y-4 text-white">
-                <div>
+                <div className="flex flex-col space-y-2">
                     <div>
                         <h2 className="font-bold">Siena College</h2>
                     </div>
-                    <div className="flex justify-between">
-                        <h3>Loudonville, NY</h3>
-                        <h3>May 2024</h3>
+                    <div className="rounded-lg bg-gray-800 p-2">
+                        <div className="flex justify-between">
+                            <h3>Loudonville, NY</h3>
+                            <h3>May 2024</h3>
+                        </div>
+                        <div className="flex justify-between">
+                            
+                            <h3>B.A. in Psychology & Computer Science</h3>
+                            <h3>GPA 3.71</h3>
+                        </div>
                     </div>
-                    <div className="flex justify-between">
-                        
-                        <h3>B.A. in Psychology & Computer Science</h3>
-                        <h3>GPA 3.71</h3>
-                    </div>
+                    
                 </div>
                 <div className="flex flex-col space-y-2">
                     <h3 className="font-semibold">Coursework</h3>
@@ -51,21 +54,21 @@
                 </div>
                 <div className="flex flex-col space-y-2">
                     <h3 className="font-semibold">Honors</h3>
-                    <ul className="flex flex-wrap gap-2">
-                        <li className="rounded-lg bg-gray-800 p-2 flex-col space-y-2">
-                            <div className="flex space-x-4">
+                    <ul className="flex flex-col space-y-2">
+                        <li className="rounded-lg bg-gray-800 p-2 flex-col">
+                            <div className="flex justify-between">
                                 <h3 className="font-semibold">Siena College</h3>
                                 <h4>Member</h4>
                             </div>
                             <div>
-                                <ul  className=" flex text-sm">
+                                <ul  className="flex text-sm">
                                     <li>Upsilon Pi Epsilon</li>
                                 </ul>
                             </div>
                         </li>
-                        <li className="rounded-lg bg-gray-800 p-2 flex-col space-y-2">
+                        <li className="rounded-lg bg-gray-800 p-2 flex-col">
                             
-                                <div className="flex space-x-4">
+                                <div className="flex justify-between">
                                     <h3 className="font-semibold">Siena College</h3>
                                     <h4>Dean's List</h4>
                                 </div>
@@ -80,8 +83,8 @@
                                 
                             
                         </li>
-                        <li className="rounded-lg bg-gray-800 p-2 flex-col space-y-2">
-                                <div className="flex space-x-4">
+                        <li className="rounded-lg bg-gray-800 p-2 flex-col ">
+                                <div className="flex justify-between">
                                     <h3 className="font-semibold">Siena College</h3>
                                     <h4>President's List</h4>
                                 </div>
