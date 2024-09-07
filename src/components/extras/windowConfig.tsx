@@ -2,6 +2,9 @@
 import WelcomeApp from '../application/welcome_app';
 import ResumeApp from '../application/resume_app';
 import CreditsApp from '../application/credits_app';
+
+import EducationApp from '../application/about_apps/education_app';
+
 import Folder from '../screen/Folder';
 
 import TestProject from '../application/project_apps/testProject';
@@ -51,6 +54,18 @@ const windowConfig: WindowConfig = {
       SecondTestProject: {
         component: SecondTestProject,
         title: 'Test Project 2',
+        defaultOpen: false,
+      }
+    },
+  },
+  AboutMe: {
+    component: Folder,
+    title: 'About Me',
+    isFolder: true,
+    folderApps: {
+      Education: {
+        component: EducationApp,
+        title: 'Education',
         defaultOpen: false,
       }
     },
