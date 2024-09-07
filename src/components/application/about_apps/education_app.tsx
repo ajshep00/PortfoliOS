@@ -5,7 +5,7 @@
             <div className="flex flex-col space-y-4 text-white">
                 <div className="flex flex-col space-y-2">
                     <div>
-                        <h2 className="font-bold">Siena College</h2>
+                        <h2 className="font-bold text-lg">Siena College</h2>
                     </div>
                     <div className="rounded-lg bg-gray-800 p-2">
                         <div className="flex justify-between">
