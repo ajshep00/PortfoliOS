@@ -70,7 +70,7 @@
                             
                                 <div className="flex justify-between">
                                     <h3 className="font-semibold">Siena College</h3>
-                                    <h4>Dean's List</h4>
+                                    <h4>Dean&apos;s List</h4>
                                 </div>
                                 
                                 <div>
@@ -86,7 +86,7 @@
                         <li className="rounded-lg bg-gray-800 p-2 flex-col ">
                                 <div className="flex justify-between">
                                     <h3 className="font-semibold">Siena College</h3>
-                                    <h4>President's List</h4>
+                                    <h4>President&apos;s List</h4>
                                 </div>
                                 <div>
                                     <ul  className="flex text-sm space-x-2">
