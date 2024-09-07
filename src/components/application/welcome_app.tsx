@@ -20,9 +20,10 @@ import Window from '../../components/screen/Window'
             </p>
             <br></br>
             <p>
-                So far I only have a bit of the UI implemented, but the windows are draggable and I am working on implementing a 
-                &quot;boot screen&quot; for when the page first loads. I have many more plans for the future and I am excited to share them 
-                with you! In the meantime,  feel free to peruse what is currently available (including my resume!), and enjoy!
+                I am working on the entire theme for the portfolio, but I am currently using the default gray colors
+                from <a href='https://tailwindcss.com' target="_blank" className='text-rose'>tailwindCSS</a> I have many more plans
+                for the future and I am excited to share them with you! In the meantime, feel free to peruse what is currently
+                available (including my resume!), and enjoy!
             </p>
 
             </div>
