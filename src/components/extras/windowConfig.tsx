@@ -4,6 +4,7 @@ import ResumeApp from '../application/resume_app';
 import CreditsApp from '../application/credits_app';
 
 import EducationApp from '../application/about_apps/education_app';
+import ExperienceApp from '../application/about_apps/experience_app';
 
 import Folder from '../screen/Folder';
 
@@ -41,23 +42,6 @@ const windowConfig: WindowConfig = {
     defaultOpen: false,
     isFolder: false
   },
-  Projects: {
-    component: Folder,
-    title: 'Projects',
-    isFolder: true,
-    folderApps: {
-      TestProject: {
-        component: TestProject,
-        title: 'Test Project',
-        defaultOpen: false,
-      },
-      SecondTestProject: {
-        component: SecondTestProject,
-        title: 'Test Project 2',
-        defaultOpen: false,
-      }
-    },
-  },
   AboutMe: {
     component: Folder,
     title: 'About Me',
@@ -66,6 +50,11 @@ const windowConfig: WindowConfig = {
       Education: {
         component: EducationApp,
         title: 'Education',
+        defaultOpen: false,
+      },
+      Experience: {
+        component: ExperienceApp,
+        title: 'Experience',
         defaultOpen: false,
       }
     },
