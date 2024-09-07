@@ -64,7 +64,7 @@ const Window: React.FC<WindowProps> = ({
             </button>
           </div>
         </header>
-        <div>
+        <div className='max-h-[535px] overflow-y-auto'>
           <main className='w-full h-full p-4'>{children}</main>
         </div>
       </div>
