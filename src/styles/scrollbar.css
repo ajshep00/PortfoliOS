@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.gray.700') theme('colors.gray.800');
+  }
+  
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: theme('colors.gray.800');
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: theme('colors.gray.700');
+    border: none;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.gray.700');
+  }
+    

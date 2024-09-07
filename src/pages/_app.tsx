@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import '../styles/scrollbar.css'
+
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import Head from 'next/head';
