@@ -5,6 +5,7 @@ import CreditsApp from '../application/credits_app';
 
 import EducationApp from '../application/about_apps/education_app';
 import ExperienceApp from '../application/about_apps/experience_app';
+import TechnologiesApp from '../application/about_apps/technologies_app';
 
 import Folder from '../screen/Folder';
 
@@ -52,6 +53,11 @@ const windowConfig: WindowConfig = {
       Experience: {
         component: ExperienceApp,
         title: 'Experience',
+        defaultOpen: false,
+      },
+      Technologies: {
+        component: TechnologiesApp,
+        title: 'Technologies',
         defaultOpen: false,
       }
     },
